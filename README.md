@@ -7,11 +7,11 @@ Users can move items between lists, and items automatically return to the main l
 
 ## **🔹 Features**
 
-✅ Click an item to move it to **Fruit** or **Vegetable** list.
-✅ Items return to the **Main List** after **5 seconds**.
-✅ Clicking an item in **Fruit/Vegetable** moves it back **immediately**.
-✅ **React Router** navigation with a navbar.
-✅ Styled using **Material-UI (MUI)**.
+- ✅ **Click** an item to move it into the **Fruit** or **Vegetable** categories.
+- ✅ Items automatically return to the **Main List** after **5 seconds**.
+- ✅ **Click** an item in **Fruit/Vegetable** to move it back to the **Main List** instantly.
+- ✅ Navigation between pages using **React Router** with a top navbar.
+- ✅ Fully styled using **Material-UI (MUI)** for a modern UI.
 
 ---
 
