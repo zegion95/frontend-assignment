@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Box, CardContent, Typography } from "@mui/material";
+import { Data, User, TransformedData } from "../../types/user.type"
 
-const transformUsersData = async () => {
+const transformUsersData = async (): Promise<TransformedData> => {
   try {
-    const response = await axios.get("https://dummyjson.com/users");
-    const users = response.data.users;
+    const response = await axios.get<Data>("https://dummyjson.com/users");
+    const users: User[] = response.data.users;
 
-    const groupedData = users.reduce((acc: any, user: any) => {
+    const groupedData: TransformedData = users.reduce((acc: any, user: User) => {
       const { company, gender, age, hair, firstName, lastName, address } = user;
       const department = company.department;
       if (!acc[department]) {
@@ -40,7 +41,7 @@ const transformUsersData = async () => {
 };
 
 const DataGroup: React.FC = () => {
-  const [data, setData] = useState<any>({});
+  const [data, setData] = useState<TransformedData>({});
 
   useEffect(() => {
     transformUsersData().then((data) => setData(data));

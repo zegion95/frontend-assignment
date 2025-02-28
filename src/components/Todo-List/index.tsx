@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, CardContent, Typography, Box } from "@mui/material";
 
-type Item = {
+interface Item  {
   type: "Fruit" | "Vegetable";
   name: string;
 };
