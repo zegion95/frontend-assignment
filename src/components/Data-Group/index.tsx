@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, Paper, Typography } from "@mui/material";
 import { Data, User, TransformedData } from "../../types/user.type"
 
 const transformUsersData = async (): Promise<TransformedData> => {
@@ -50,18 +50,34 @@ const DataGroup: React.FC = () => {
   console.log(data);
 
   return (
-    <Box
-      sx={{
-        justifyContent: "left",
-        alignItems: "left",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <CardContent>
-        <Typography>{JSON.stringify(data, null, 2)}</Typography>
-      </CardContent>
-    </Box>
+    <Grid container spacing={3} sx={{p:2}}>
+      {Object.entries(data).map(([department, data]) => (
+        <Grid item xs={12} sm={6} md={4} key={department}>
+          <Card component={Paper} elevation={3}>
+            <CardContent sx={{ textAlign: "start" }}>
+              <Typography variant="h6" gutterBottom>
+                {department}
+              </Typography>
+              <Typography variant="body2">Male: {data.male}</Typography>
+              <Typography variant="body2">Female: {data.female}</Typography>
+              <Typography variant="body2">
+                Age Range: {data.ageRange[0]} - {data.ageRange[1]}
+              </Typography>
+              <Typography variant="body2">
+                Hair Colors: {Object.entries(data.hair)
+                  .map(([color, count]) => `${color}: ${count}`)
+                  .join(", ")}
+              </Typography>
+              <Typography variant="body2">
+                Users: {Object.entries(data.addressUser)
+                  .map(([name, address]) => `${name} (${address})`)
+                  .join(", ")}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
